@@ -42,7 +42,7 @@ public class App {
                     System.out.println("Cpf: " + cliente.getCpf());
                     System.out.println("Cnh: " + cliente.getCnh());
                     System.out.println("Idade: " + cliente.getIdade());
-                        
+                        break;
                 }
                 case 2:
               
