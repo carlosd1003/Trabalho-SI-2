@@ -1,51 +1,49 @@
 package Locadora;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class App {
+
     public static void main(String[] args) {
-     
+
         Scanner scan = new Scanner(System.in);
         Locadora locadora = new Locadora("Nome da Locadora", "12.345.678/0001-90", "Endereço da Locadora", "(11) 1234-5678");
-        ArrayList<Cliente> clientes = new ArrayList<>(); //Cria uma lista para adicionar os clientes cadastrados 
-        ArrayList<Veiculo> veiculo = new ArrayList<>(); 
-        int escolha;        
-        do{
+        int escolha;
+        do {
             System.out.println("Qual opcao voce deseja? ");
             System.out.println("1 - Cadastrar um Cliente ");
             System.out.println("2 - Cadastrar um Veiculo");
-            
+            System.out.println("3 - Listar Clientes");
+
             System.out.print("Número da opção: ");
             escolha = scan.nextInt();
-            
-            
-            switch (escolha){
+
+            switch (escolha) {
                 case 1: {
                     System.out.print("Nome do Cliente: ");
-                        String nome = scan.next();
-                        
+                    String nome = scan.next();
+
                     System.out.print("Cpf do Cliente: ");
-                        String cpf = scan.next();
-                        
+                    String cpf = scan.next();
+
                     System.out.print("Cnh do Cliente: ");
-                        String cnh = scan.next();    
-                        
+                    String cnh = scan.next();
+
                     System.out.print("Idade do Cliente: ");
-                        int idade = scan.nextInt();   
-                        
+                    int idade = scan.nextInt();
+
                     Cliente cliente = new Cliente(nome, cpf, cnh, idade);//Pega os dados digitados e cria um cliente
-                    clientes.add(cliente); // Guarda o cliente cadastrado na lista local
                     locadora.cadastrarCliente(cliente); //Pega o cliente cadastrado e guarda na lista criada
-                    
+
                     System.out.println("Cliente cadastrado com sucesso!");
+                    System.out.println("Informacoes do cliente abaixo");
                     System.out.println("Nome: " + cliente.getNome());
                     System.out.println("Cpf: " + cliente.getCpf());
                     System.out.println("Cnh: " + cliente.getCnh());
                     System.out.println("Idade: " + cliente.getIdade());
-                        break;
+                    break;
                 }
-                case 2:{
+                case 2: {
                     // Pede para o usuário digitar o modelo do veículo
                     System.out.print("Nome do modelo: ");
                     String modelo = scan.next();
@@ -73,7 +71,7 @@ public class App {
                     Veiculo carro = new Veiculo(modelo, marca, placa, ano, valorDiaria, disponivel);
 
                     // Adiciona o veículo cadastrado na lista de veículos
-                    veiculo.add(carro);
+                    locadora.cadastrarVeiculo(carro);
 
                     // Mostra uma mensagem confirmando o cadastro
                     System.out.println("Veiculo cadastrado com sucesso!");
@@ -89,9 +87,19 @@ public class App {
                     // Encerra o case 2 e volta para o menu
                     break;
                 }
-         
+
+                case 3: {
+                    for (int i = 0; i < locadora.listarClientes().size(); i++) {
+                        Cliente cliente = locadora.listarClientes().get(i);
+                        System.out.println("Nome: " + cliente.getNome());
+                        System.out.println("CPF: " + cliente.getCpf());
+                        System.out.println("------------------");
+                    }
+                    break;
+                }
+
             }
-            
+
         } while (escolha != 0);
         scan.close();
     }

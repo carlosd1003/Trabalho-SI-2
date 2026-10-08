@@ -1,8 +1,10 @@
 package Locadora;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Locadora {
+
     private String nome;
     private String cnpj;
     private String endereco;
@@ -11,7 +13,7 @@ public class Locadora {
     private ArrayList<Veiculo> veiculos;
     private ArrayList<Locacao> locacoes;
 
-    public Locadora(String nome, String cnpj, String endereco, String telefone){
+    public Locadora(String nome, String cnpj, String endereco, String telefone) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;
@@ -20,32 +22,45 @@ public class Locadora {
         this.veiculos = new ArrayList<Veiculo>();
         this.locacoes = new ArrayList<Locacao>();
     }
-    
-    public String getNome(){
+
+    public String getNome() {
         return this.nome;
     }
-    
-    public String getCnpj(){
+
+    public String getCnpj() {
         return this.cnpj;
     }
-    
-    public String getEndereco(){
+
+    public String getEndereco() {
         return this.endereco;
     }
-    
-    public String getTelefone(){
+
+    public String getTelefone() {
         return this.telefone;
     }
 
-    public void cadastrarCliente(Cliente cliente){
+    //cadastra cliente
+    public void cadastrarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
-    
-    public void cadastrarVeiculo(Veiculo veiculo){
+
+    //listar clientes
+    public ArrayList<Cliente> listarClientes() {
+        return this.clientes;
+    }
+
+    //cadastra carro
+    public void cadastrarVeiculo(Veiculo veiculo) {
         this.veiculos.add(veiculo);
     }
-    
-    public void cadastrarLocacao(Locacao locacao){
+
+    // listar carros
+    public ArrayList<Veiculo> listarVeiculos() {
+        return this.veiculos;
+    }
+
+    //cadastra locacoes
+    public void cadastrarLocacao(Locacao locacao) {
         this.locacoes.add(locacao);
     }
 }
