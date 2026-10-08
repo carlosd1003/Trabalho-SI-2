@@ -14,6 +14,8 @@ public class App {
             System.out.println("1 - Cadastrar um Cliente ");
             System.out.println("2 - Cadastrar um Veiculo");
             System.out.println("3 - Listar Clientes");
+            System.out.println("4 - Listar Veiculo");
+            System.out.println("0 - Para Sair");
 
             System.out.print("Número da opção: ");
             escolha = scan.nextInt();
@@ -21,7 +23,7 @@ public class App {
             switch (escolha) {
                 case 1: {
                     System.out.print("Nome do Cliente: ");
-                    String nome = scan.next();
+                    String nome = scan.nextLine();
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
@@ -96,6 +98,15 @@ public class App {
                         System.out.println("------------------");
                     }
                     break;
+                }
+                
+                case 4: {
+                    for (int i = 0; i < locadora.listarVeiculos().size(); i++){
+                        Veiculo veiculo = locadora.listarVeiculos().get(i);
+                        System.out.println("Nome: " + veiculo.getmodelo());
+                        System.out.println("CPF: " + veiculo.getplaca());
+                        System.out.println("------------------");
+                    }
                 }
 
             }
