@@ -1,4 +1,3 @@
-
 package Locadora;
 
 import java.util.Scanner;
@@ -8,10 +7,10 @@ public class App {
     public static void main(String[] args) {
      
         Scanner scan = new Scanner(System.in);
-        ArrayList<Cliente> clientes = new ArrayList<>(); //Cria uma lista para adicionar os clientes cadastrados 
+        Locadora locadora = new Locadora("Nome da Locadora", "12.345.678/0001-90", "Endereço da Locadora", "(11) 1234-5678");
+        //ArrayList<Cliente> clientes = new ArrayList<>(); //Cria uma lista para adicionar os clientes cadastrados 
         ArrayList<Veiculo> veiculo = new ArrayList<>(); 
-        int escolha;
-        
+        int escolha;        
         do{
             System.out.println("Qual opcao voce deseja? ");
             System.out.println("1 - Cadastrar um Cliente ");
@@ -36,7 +35,7 @@ public class App {
                         int idade = scan.nextInt();   
                         
                     Cliente cliente = new Cliente(nome, cpf, cnh, idade);//Pega os dados digitados e cria um cliente
-                    clientes.add(cliente);//Pega o cliente cadastrado e guarda na lista criada
+                    locadora.cadastrarCliente(cliente); //Pega o cliente cadastrado e guarda na lista criada
                     
                     System.out.println("Cliente cadastrado com sucesso!");
                     System.out.println("Nome: " + cliente.getNome());
@@ -88,7 +87,7 @@ public class App {
 
                     // Encerra o case 2 e volta para o menu
                     break;
-}
+                }
          
             }
             
