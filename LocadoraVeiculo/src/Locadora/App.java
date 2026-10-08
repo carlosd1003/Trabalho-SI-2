@@ -8,7 +8,7 @@ public class App {
      
         Scanner scan = new Scanner(System.in);
         Locadora locadora = new Locadora("Nome da Locadora", "12.345.678/0001-90", "Endereço da Locadora", "(11) 1234-5678");
-        //ArrayList<Cliente> clientes = new ArrayList<>(); //Cria uma lista para adicionar os clientes cadastrados 
+        ArrayList<Cliente> clientes = new ArrayList<>(); //Cria uma lista para adicionar os clientes cadastrados 
         ArrayList<Veiculo> veiculo = new ArrayList<>(); 
         int escolha;        
         do{
@@ -35,6 +35,7 @@ public class App {
                         int idade = scan.nextInt();   
                         
                     Cliente cliente = new Cliente(nome, cpf, cnh, idade);//Pega os dados digitados e cria um cliente
+                    clientes.add(cliente); // Guarda o cliente cadastrado na lista local
                     locadora.cadastrarCliente(cliente); //Pega o cliente cadastrado e guarda na lista criada
                     
                     System.out.println("Cliente cadastrado com sucesso!");
@@ -92,6 +93,6 @@ public class App {
             }
             
         } while (escolha != 0);
-        
+        scan.close();
     }
 }

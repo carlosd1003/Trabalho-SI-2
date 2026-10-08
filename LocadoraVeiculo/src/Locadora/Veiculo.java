@@ -1,8 +1,6 @@
 
 package Locadora;
 
-import java.util.Scanner;
-
 public class Veiculo {
     private String modelo;
     private String marca;
