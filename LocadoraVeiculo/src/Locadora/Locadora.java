@@ -59,8 +59,40 @@ public class Locadora {
         return this.veiculos;
     }
 
+    // listar locacoes
+    public ArrayList<Locacao> listarLocacoes() {
+        return this.locacoes;
+    }
+
     //cadastra locacoes
     public void cadastrarLocacao(Locacao locacao) {
         this.locacoes.add(locacao);
+    }
+
+    //busca de cliente por cpf
+    public Cliente buscarCliente(String cpf) {
+
+        for (int i = 0; i < this.clientes.size(); i++) {
+
+            Cliente cliente = this.clientes.get(i);
+
+            if (cliente.getCpf().equals(cpf)) { //compara o cpf digitado com o da lista
+                return cliente;
+            }
+        }
+
+        return null;
+    }
+
+    //busca veiculo pela placa
+    public Veiculo buscarVeiculo(String placa) {
+        for (int i = 0; i < this.veiculos.size(); i++) {
+            Veiculo veiculo = this.veiculos.get(i);
+
+            if (veiculo.getplaca().equals(placa)) {
+                return veiculo;
+            }
+        }
+        return null;
     }
 }

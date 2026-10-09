@@ -1,7 +1,7 @@
-
 package Locadora;
 
 public class Veiculo {
+
     private String modelo;
     private String marca;
     private String placa;
@@ -9,8 +9,7 @@ public class Veiculo {
     private double valorDiaria;
     private boolean disponivel;
 
-
-    public Veiculo (String modelo, String marca, String placa,int ano,double valorDiaria,boolean disponivel){
+    public Veiculo(String modelo, String marca, String placa, int ano, double valorDiaria, boolean disponivel) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
@@ -18,37 +17,34 @@ public class Veiculo {
         this.valorDiaria = valorDiaria;
         this.disponivel = disponivel;
     }
-    
-    public String getmodelo(){
+
+    public String getmodelo() {
         return this.modelo;
     }
-    
-    public String getmarca(){
+
+    public String getmarca() {
         return this.marca;
-    
+
     }
-    
-    public String getplaca(){
+
+    public String getplaca() {
         return this.placa;
-    
+
     }
-    
-    public int getano(){
+
+    public int getano() {
         return this.ano;
-        
+
     }
-    
-    public double getvalorDiaria(){
+
+    public double getvalorDiaria() {
         return this.valorDiaria;
-        
+
     }
-    
-    public boolean getdisponivel(){
+
+    public boolean getdisponivel() {
         return this.disponivel;
-    
-    
+
     }
-    
- 
-    
+
 }

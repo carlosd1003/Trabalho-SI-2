@@ -13,8 +13,10 @@ public class App {
             System.out.println("Qual opcao voce deseja? ");
             System.out.println("1 - Cadastrar um Cliente ");
             System.out.println("2 - Cadastrar um Veiculo");
-            System.out.println("3 - Listar Clientes");
-            System.out.println("4 - Listar Veiculo");
+            System.out.println("3 - Cadastrar uma Locacao");
+            System.out.println("4 - Listar Cliente");
+            System.out.println("5 - Listar Veiculo");
+            System.out.println("6 - Listar Locacao");
             System.out.println("0 - Para Sair");
 
             System.out.print("Número da opção: ");
@@ -23,7 +25,7 @@ public class App {
             switch (escolha) {
                 case 1: {
                     System.out.print("Nome do Cliente: ");
-                    String nome = scan.nextLine();
+                    String nome = scan.next();
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
@@ -89,8 +91,65 @@ public class App {
                     // Encerra o case 2 e volta para o menu
                     break;
                 }
-
                 case 3: {
+                    Cliente cliente;
+                    Veiculo veiculo;
+
+                    // procurar cliente até encontrar
+                    do {
+                        System.out.print("Qual o CPF do cliente: ");
+                        String cpf = scan.next();
+
+                        cliente = locadora.buscarCliente(cpf);
+
+                        if (cliente == null) {
+                            System.out.println("Cliente nao encontrado! Tente novamente.");
+                        }
+
+                    } while (cliente == null);
+
+                    // procurar veiculo até encontrar
+                    do {
+                        System.out.print("Qual a placa do veiculo: ");
+                        String placa = scan.next();
+
+                        veiculo = locadora.buscarVeiculo(placa);
+
+                        if (veiculo == null) {
+                            System.out.println("Veiculo nao existe! Tente novamente.");
+                        } else if (!veiculo.getdisponivel()) {
+                            System.out.println("Veiculo indisponivel! Escolha outro.");
+                        }
+
+                    } while (veiculo == null || !veiculo.getdisponivel());
+
+                    // verificar quantidade de dias
+                    int dias;
+
+                    do {
+                        System.out.print("Quantidade de dias: ");
+                        dias = scan.nextInt();
+
+                        if (dias <= 0) {
+                            System.out.println("Quantidade de dias invalida!");
+                        }
+
+                    } while (dias <= 0);
+
+                    // criar locacao
+                    Locacao locacao = new Locacao(cliente, veiculo, dias);
+
+                    locadora.cadastrarLocacao(locacao);
+
+                    System.out.println("Locacao cadastrada!");
+                    System.out.println("Cliente: " + locacao.getCliente().getNome());
+                    System.out.println("Veiculo: " + locacao.getVeiculo().getmodelo());
+                    System.out.println("Valor total: R$ " + locacao.getValorTotal());
+
+                    break;
+                }
+
+                case 4: {
                     for (int i = 0; i < locadora.listarClientes().size(); i++) {
                         Cliente cliente = locadora.listarClientes().get(i);
                         System.out.println("Nome: " + cliente.getNome());
@@ -99,14 +158,37 @@ public class App {
                     }
                     break;
                 }
-                
-                case 4: {
-                    for (int i = 0; i < locadora.listarVeiculos().size(); i++){
+
+                case 5: {
+                    for (int i = 0; i < locadora.listarVeiculos().size(); i++) {
                         Veiculo veiculo = locadora.listarVeiculos().get(i);
-                        System.out.println("Nome: " + veiculo.getmodelo());
-                        System.out.println("CPF: " + veiculo.getplaca());
+                        System.out.println("Modelo: " + veiculo.getmodelo());
+                        System.out.println("Placa: " + veiculo.getplaca());
                         System.out.println("------------------");
                     }
+                    break;
+                }
+                case 6: {
+                    if (locadora.listarLocacoes().isEmpty()) {
+                        System.out.println("Nenhuma locacao cadastrada!");
+                        break;
+                    }
+
+                    for (int i = 0; i < locadora.listarLocacoes().size(); i++) {
+                        Locacao locacao = locadora.listarLocacoes().get(i);
+
+                        System.out.println("Locacao numero: " + (i + 1));
+                        System.out.println("Cliente: " + locacao.getCliente().getNome());
+                        System.out.println("CPF: " + locacao.getCliente().getCpf());
+                        System.out.println("Veiculo: " + locacao.getVeiculo().getmodelo());
+                        System.out.println("Placa: " + locacao.getVeiculo().getplaca());
+                        System.out.println("Quantidade de dias: " + locacao.getQuantidadeDias());
+                        System.out.println("Valor total: R$ " + locacao.getValorTotal());
+                        System.out.println("Ativa: " + locacao.isAtiva());
+                        System.out.println("------------------");
+                    }
+
+                    break;
                 }
 
             }
