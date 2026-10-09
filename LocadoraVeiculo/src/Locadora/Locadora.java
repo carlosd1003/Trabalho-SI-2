@@ -99,7 +99,8 @@ public class Locadora {
         }
         return null;
     }
-
+    
+    //permite devolver  o veiculo para ficar disponivel novamente
     public boolean devolverVeiculo(String placa) {
 
         for (int i = 0; i < this.locacoes.size(); i++) {
