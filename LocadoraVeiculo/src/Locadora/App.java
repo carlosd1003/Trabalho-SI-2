@@ -13,10 +13,11 @@ public class App {
             System.out.println("Qual opcao voce deseja? ");
             System.out.println("1 - Cadastrar um Cliente ");
             System.out.println("2 - Cadastrar um Veiculo");
-            System.out.println("3 - Cadastrar uma Locacao");
+            System.out.println("3 - Fazer uma Locacao");
             System.out.println("4 - Listar Cliente");
             System.out.println("5 - Listar Veiculo");
             System.out.println("6 - Listar Locacao");
+            System.out.println("7 - Devolver Veiculo");
             System.out.println("0 - Para Sair");
 
             System.out.print("Número da opção: ");
@@ -186,6 +187,21 @@ public class App {
                         System.out.println("Valor total: R$ " + locacao.getValorTotal());
                         System.out.println("Ativa: " + locacao.isAtiva());
                         System.out.println("------------------");
+                    }
+
+                    break;
+                }
+                case 7: {
+                    System.out.print("Digite a placa do veiculo: ");
+                    String placa = scan.next();
+
+                    boolean devolvido = locadora.devolverVeiculo(placa);
+
+                    if (devolvido) {
+                        System.out.println("Veiculo devolvido com sucesso!");
+                        System.out.println("Veiculo disponivel para aluguel!");
+                    } else {
+                        System.out.println("Nenhuma locacao ativa encontrada para essa placa!");
                     }
 
                     break;

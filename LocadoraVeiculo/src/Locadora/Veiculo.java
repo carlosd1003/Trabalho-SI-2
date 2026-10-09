@@ -46,5 +46,9 @@ public class Veiculo {
         return this.disponivel;
 
     }
+    
+    public void setDisponivel(boolean disponivel) {
+    this.disponivel = disponivel;
+}
 
 }

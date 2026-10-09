@@ -66,7 +66,11 @@ public class Locadora {
 
     //cadastra locacoes
     public void cadastrarLocacao(Locacao locacao) {
-        this.locacoes.add(locacao);
+        if (locacao.getVeiculo().getdisponivel()) {
+            this.locacoes.add(locacao);
+
+            locacao.getVeiculo().setDisponivel(false);
+        }
     }
 
     //busca de cliente por cpf
@@ -94,5 +98,25 @@ public class Locadora {
             }
         }
         return null;
+    }
+
+    public boolean devolverVeiculo(String placa) {
+
+        for (int i = 0; i < this.locacoes.size(); i++) {
+
+            Locacao locacao = this.locacoes.get(i);
+
+            if (locacao.getVeiculo().getplaca().equalsIgnoreCase(placa)
+                    && locacao.isAtiva()) {
+
+                locacao.finalizarLocacao();
+
+                locacao.getVeiculo().setDisponivel(true);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
