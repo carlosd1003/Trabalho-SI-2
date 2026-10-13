@@ -43,6 +43,24 @@ public class Locadora {
     public void cadastrarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
+    
+    public boolean verificarCpf(String cpf){
+        for (Cliente cliente : clientes){
+            if(cliente.getCpf().equals(cpf)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificarCnh(String cnh){
+        for (Cliente cliente : clientes){
+            if(cliente.getCnh().equals(cnh)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     //listar clientes
     public ArrayList<Cliente> listarClientes() {

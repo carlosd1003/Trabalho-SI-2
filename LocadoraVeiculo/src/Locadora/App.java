@@ -10,38 +10,60 @@ public class App {
         Locadora locadora = new Locadora("Nome da Locadora", "12.345.678/0001-90", "Endereço da Locadora", "(11) 1234-5678");
         int escolha;
         do {
-            System.out.println("Qual opcao voce deseja? ");
-            System.out.println("1 - Cadastrar um Cliente ");
-            System.out.println("2 - Cadastrar um Veiculo");
-            System.out.println("3 - Fazer uma Locacao");
-            System.out.println("4 - Listar Cliente");
-            System.out.println("5 - Listar Veiculo");
-            System.out.println("6 - Listar Locacao");
-            System.out.println("7 - Devolver Veiculo");
-            System.out.println("0 - Para Sair");
+            escolha = -1;
+            
+                
+                System.out.println("Qual opção você deseja? ");
+                System.out.println("1 - Cadastrar um Cliente ");
+                System.out.println("2 - Cadastrar um Veiculo");
+                System.out.println("3 - Fazer uma Locação");
+                System.out.println("4 - Listar Cliente");
+                System.out.println("5 - Listar Veículo");
+                System.out.println("6 - Listar Locação");
+                System.out.println("7 - Devolver Veículo");
+                System.out.println("0 - Para Sair");
 
-            System.out.print("Número da opção: ");
-            escolha = scan.nextInt();
-
+                System.out.print("Número da opção: ");
+                escolha = scan.nextInt();
+                
+                if(escolha < 0 || escolha > 7){
+                    System.out.println("Opção inválida!");
+                    continue;
+                }else{
+                    System.out.println("Opção válida!");
+                }
+                
+           
+            
             switch (escolha) {
                 case 1: {
+                    
                     System.out.print("Nome do Cliente: ");
                     String nome = scan.next();
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
+                    
+                    if(locadora.verificarCpf(cpf)){
+                        System.out.println("Este CPF já está criado!");
+                        break;
+                    }
 
                     System.out.print("Cnh do Cliente: ");
                     String cnh = scan.next();
+                    
+                    if(locadora.verificarCnh(cnh)){
+                        System.out.println("Esta CNH já está criada!");
+                    }
 
                     System.out.print("Idade do Cliente: ");
                     int idade = scan.nextInt();
-
+                    
                     Cliente cliente = new Cliente(nome, cpf, cnh, idade);//Pega os dados digitados e cria um cliente
-                    locadora.cadastrarCliente(cliente); //Pega o cliente cadastrado e guarda na lista criada
+                    locadora.cadastrarCliente(cliente); //Pega o cliente cadastrado e guarda na lista criada na classe locadora
 
                     System.out.println("Cliente cadastrado com sucesso!");
-                    System.out.println("Informacoes do cliente abaixo");
+                    System.out.println("Informações do cliente abaixo");
                     System.out.println("Nome: " + cliente.getNome());
                     System.out.println("Cpf: " + cliente.getCpf());
                     System.out.println("Cnh: " + cliente.getCnh());
@@ -66,7 +88,7 @@ public class App {
                     int ano = scan.nextInt();
 
                     // Pede o valor que será cobrado por dia de aluguel
-                    System.out.print("Valor da diaria: ");
+                    System.out.print("Valor da diária: ");
                     double valorDiaria = scan.nextDouble();
 
                     // Todo veículo cadastrado começa disponível para aluguel
@@ -79,7 +101,7 @@ public class App {
                     locadora.cadastrarVeiculo(carro);
 
                     // Mostra uma mensagem confirmando o cadastro
-                    System.out.println("Veiculo cadastrado com sucesso!");
+                    System.out.println("Veículo cadastrado com sucesso!");
 
                     // Mostra os dados do veículo usando os métodos getters
                     System.out.println("Modelo: " + carro.getmodelo());
@@ -87,7 +109,7 @@ public class App {
                     System.out.println("Placa: " + carro.getplaca());
                     System.out.println("Ano: " + carro.getano());
                     System.out.println("Valor da diaria: R$ " + carro.getvalorDiaria());
-                    System.out.println("Disponivel: " + carro.getdisponivel());
+                    System.out.println("Disponível: " + carro.getdisponivel());
 
                     // Encerra o case 2 e volta para o menu
                     break;
@@ -104,22 +126,22 @@ public class App {
                         cliente = locadora.buscarCliente(cpf);
 
                         if (cliente == null) {
-                            System.out.println("Cliente nao encontrado! Tente novamente.");
+                            System.out.println("Cliente não encontrado! Tente novamente.");
                         }
 
                     } while (cliente == null);
 
                     // procurar veiculo até encontrar
                     do {
-                        System.out.print("Qual a placa do veiculo: ");
+                        System.out.print("Qual a placa do veículo: ");
                         String placa = scan.next();
 
                         veiculo = locadora.buscarVeiculo(placa);
 
                         if (veiculo == null) {
-                            System.out.println("Veiculo nao existe! Tente novamente.");
+                            System.out.println("Veículo não existe! Tente novamente.");
                         } else if (!veiculo.getdisponivel()) {
-                            System.out.println("Veiculo indisponivel! Escolha outro.");
+                            System.out.println("Veículo indisponivel! Escolha outro.");
                         }
 
                     } while (veiculo == null || !veiculo.getdisponivel());
@@ -132,7 +154,7 @@ public class App {
                         dias = scan.nextInt();
 
                         if (dias <= 0) {
-                            System.out.println("Quantidade de dias invalida!");
+                            System.out.println("Quantidade de dias inválida!");
                         }
 
                     } while (dias <= 0);
@@ -142,7 +164,7 @@ public class App {
 
                     locadora.cadastrarLocacao(locacao);
 
-                    System.out.println("Locacao cadastrada!");
+                    System.out.println("Locação cadastrada!");
                     System.out.println("Cliente: " + locacao.getCliente().getNome());
                     System.out.println("Veiculo: " + locacao.getVeiculo().getmodelo());
                     System.out.println("Valor total: R$ " + locacao.getValorTotal());
@@ -151,6 +173,10 @@ public class App {
                 }
 
                 case 4: {
+                    if (locadora.listarClientes().isEmpty()) {
+                        System.out.println("Nenhum cliente cadastrado!");
+                        break;
+                    }
                     for (int i = 0; i < locadora.listarClientes().size(); i++) {
                         Cliente cliente = locadora.listarClientes().get(i);
                         System.out.println("Nome: " + cliente.getNome());
@@ -161,6 +187,10 @@ public class App {
                 }
 
                 case 5: {
+                    if (locadora.listarVeiculos().isEmpty()) {
+                        System.out.println("Nenhum veículo cadastrado!");
+                        break;
+                    }
                     for (int i = 0; i < locadora.listarVeiculos().size(); i++) {
                         Veiculo veiculo = locadora.listarVeiculos().get(i);
                         System.out.println("Modelo: " + veiculo.getmodelo());
@@ -171,7 +201,7 @@ public class App {
                 }
                 case 6: {
                     if (locadora.listarLocacoes().isEmpty()) {
-                        System.out.println("Nenhuma locacao cadastrada!");
+                        System.out.println("Nenhuma locação cadastrada!");
                         break;
                     }
 
