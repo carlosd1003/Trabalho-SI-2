@@ -138,4 +138,13 @@ public class Locadora {
 
         return false;
     }
+    
+    public boolean verificarPlaca(String placa){
+        for (Veiculo veiculo : veiculos){
+            if(veiculo.getplaca().equals(placa)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -10,7 +10,7 @@ public class App {
         Locadora locadora = new Locadora("Nome da Locadora", "12.345.678/0001-90", "Endereço da Locadora", "(11) 1234-5678");
         int escolha;
         do {
-            escolha = -1;
+
             
                 
                 System.out.println("Qual opção você deseja? ");
@@ -78,10 +78,18 @@ public class App {
                     // Pede a marca do veículo
                     System.out.print("Nome da marca: ");
                     String marca = scan.next();
+                    
+
 
                     // Pede a placa do veículo
                     System.out.print("Número da placa: ");
                     String placa = scan.next();
+                    
+                      if(locadora.verificarPlaca(placa)){
+                        System.out.println("Esta placa já está criado!");
+                        break;
+                    }
+                    
 
                     // Pede o ano de fabricação do veículo
                     System.out.print("Ano do veiculo: ");
