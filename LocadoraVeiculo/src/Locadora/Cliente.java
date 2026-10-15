@@ -2,11 +2,13 @@ package Locadora;
 
 public class Cliente {
 
+    //atributos
     private String nome;
     private String cpf;
     private String cnh;
     private int idade;
 
+    //construtor
     public Cliente(String nome, String cpf, String cnh, int idade) {
         this.nome = nome;
         this.cpf = cpf;
@@ -14,6 +16,7 @@ public class Cliente {
         this.idade = idade;
     }
 
+    //getters
     public String getNome() {
         return this.nome;
     }

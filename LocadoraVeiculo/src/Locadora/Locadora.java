@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Locadora {
 
+    // atributos
     private String nome;
     private String cnpj;
     private String endereco;
@@ -12,7 +13,10 @@ public class Locadora {
     private ArrayList<Veiculo> veiculos;
     private ArrayList<Locacao> locacoes;
 
+    // construtor
     public Locadora(String nome, String cnpj, String endereco, String telefone) {
+        
+        // construtor
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;
@@ -22,6 +26,7 @@ public class Locadora {
         this.locacoes = new ArrayList<Locacao>();
     }
 
+    // getters
     public String getNome() {
         return this.nome;
     }
@@ -38,11 +43,12 @@ public class Locadora {
         return this.telefone;
     }
 
-    //cadastra cliente
+    // cadastra cliente
     public void cadastrarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
     
+    // verifica se o cpf do cliente ja está cadastrado
     public boolean verificarCpf(String cpf){
         for (Cliente cliente : clientes){
             if(cliente.getCpf().equals(cpf)){
@@ -52,6 +58,7 @@ public class Locadora {
         return false;
     }
     
+    // verifica se a cnh do cliente ja está cadastrada
     public boolean verificarCnh(String cnh){
         for (Cliente cliente : clientes){
             if(cliente.getCnh().equals(cnh)){
@@ -61,27 +68,27 @@ public class Locadora {
         return false;
     }
 
-    //listar clientes
+    // lista clientes
     public ArrayList<Cliente> listarClientes() {
         return this.clientes;
     }
 
-    //cadastra carro
+    // cadastra carro
     public void cadastrarVeiculo(Veiculo veiculo) {
         this.veiculos.add(veiculo);
     }
 
-    // listar carros
+    // lista carros
     public ArrayList<Veiculo> listarVeiculos() {
         return this.veiculos;
     }
 
-    // listar locacoes
+    // lista locacoes
     public ArrayList<Locacao> listarLocacoes() {
         return this.locacoes;
     }
 
-    //cadastra locacoes
+    // cadastra locacoes
     public void cadastrarLocacao(Locacao locacao) {
         if (locacao.getVeiculo().getdisponivel()) {
             this.locacoes.add(locacao);
@@ -90,7 +97,7 @@ public class Locadora {
         }
     }
 
-    //busca de cliente por cpf
+    // busca de cliente por cpf
     public Cliente buscarCliente(String cpf) {
 
         for (int i = 0; i < this.clientes.size(); i++) {
@@ -105,7 +112,7 @@ public class Locadora {
         return null;
     }
 
-    //busca veiculo pela placa
+    // busca de veiculo pela placa
     public Veiculo buscarVeiculo(String placa) {
         for (int i = 0; i < this.veiculos.size(); i++) {
             Veiculo veiculo = this.veiculos.get(i);
@@ -117,7 +124,7 @@ public class Locadora {
         return null;
     }
     
-    //permite devolver  o veiculo para ficar disponivel novamente
+    // permite devolver o veiculo para ficar disponivel novamente
     public double devolverVeiculo(String placa, int diasReais) {
 
         for (int i = 0; i < this.locacoes.size(); i++) {
@@ -140,6 +147,7 @@ public class Locadora {
         return 0;
     }
     
+    // verifica se a placa do veiculo ja está cadastrada
     public boolean verificarPlaca(String placa){
         for (Veiculo veiculo : veiculos){
             if(veiculo.getplaca().equals(placa)){
@@ -149,6 +157,7 @@ public class Locadora {
         return false;
     }
 
+    // calcula uma multa de 20% caso o cliente devolva o veiculo atrasado
     public double calcularMulta (Locacao locacao, int diasReais){
         int diasAtraso = diasReais - locacao.getQuantidadeDias();
         if (diasAtraso > 0) {

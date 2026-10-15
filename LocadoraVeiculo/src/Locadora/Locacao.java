@@ -2,12 +2,15 @@
 package Locadora;
 
 public class Locacao {
+
+    // atributos
     private Veiculo veiculo;
     private Cliente cliente;
     private boolean ativa;
     private int quantidadeDias;
     private double valorTotal;
     
+    // construtor
     public Locacao(Cliente cliente, Veiculo veiculo, int quantidadeDias) {
         this.cliente = cliente;
         this.veiculo = veiculo;
@@ -15,7 +18,7 @@ public class Locacao {
         this.valorTotal = calcularTotal();
         this.ativa = true;
     }
-        //gets
+    // getters
     public Cliente getCliente() {
         return this.cliente;
     }
@@ -32,10 +35,12 @@ public class Locacao {
         return this.valorTotal;
     }
 
+    // verifica se a locacao esta ativa
     public boolean isAtiva() {
         return this.ativa;
     }
-    //valor total da locacao atual do veiculo com cliente
+
+    // valor total da locacao atual do veiculo com cliente
     public double calcularTotal() {
         return this.veiculo.getvalorDiaria() * this.quantidadeDias;
     }

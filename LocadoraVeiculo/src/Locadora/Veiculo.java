@@ -2,6 +2,7 @@ package Locadora;
 
 public class Veiculo {
 
+    // atributos
     private String modelo;
     private String marca;
     private String placa;
@@ -9,6 +10,7 @@ public class Veiculo {
     private double valorDiaria;
     private boolean disponivel;
 
+    // construtor
     public Veiculo(String modelo, String marca, String placa, int ano, double valorDiaria, boolean disponivel) {
         this.modelo = modelo;
         this.marca = marca;
@@ -18,6 +20,7 @@ public class Veiculo {
         this.disponivel = disponivel;
     }
 
+    // getters
     public String getmodelo() {
         return this.modelo;
     }
@@ -47,6 +50,7 @@ public class Veiculo {
 
     }
     
+    // permite alterar a disponibilidade do veiculo
     public void setDisponivel(boolean disponivel) {
     this.disponivel = disponivel;
     }
