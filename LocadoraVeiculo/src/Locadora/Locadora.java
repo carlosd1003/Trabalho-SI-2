@@ -118,7 +118,7 @@ public class Locadora {
     }
     
     //permite devolver  o veiculo para ficar disponivel novamente
-    public boolean devolverVeiculo(String placa) {
+    public double devolverVeiculo(String placa, int diasReais) {
 
         for (int i = 0; i < this.locacoes.size(); i++) {
 
@@ -127,15 +127,17 @@ public class Locadora {
             if (locacao.getVeiculo().getplaca().equalsIgnoreCase(placa)
                     && locacao.isAtiva()) {
 
+            double multa = calcularMulta(locacao, diasReais);
+
                 locacao.finalizarLocacao();
 
                 locacao.getVeiculo().setDisponivel(true);
 
-                return true;
+                return multa;
             }
         }
 
-        return false;
+        return 0;
     }
     
     public boolean verificarPlaca(String placa){
@@ -145,5 +147,14 @@ public class Locadora {
             }
         }
         return false;
+    }
+
+    public double calcularMulta (Locacao locacao, int diasReais){
+        int diasAtraso = diasReais - locacao.getQuantidadeDias();
+        if (diasAtraso > 0) {
+            //cobra os dias de atraso multiplicados por 20%
+            return diasAtraso * (locacao.getVeiculo().getvalorDiaria() * 1.2);
+        }
+        return 0;
     }
 }

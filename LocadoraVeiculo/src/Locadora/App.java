@@ -234,10 +234,18 @@ public class App {
                     System.out.print("Digite a placa do veiculo: ");
                     String placa = scan.next();
 
-                    boolean devolvido = locadora.devolverVeiculo(placa);
+                    System.out.print("Digite a quantidade de dias que o veiculo ficou com o cliente: ");
+                    int diasReais = scan.nextInt();
 
-                    if (devolvido) {
+                    double multa = locadora.devolverVeiculo(placa, diasReais);
+
+                    if (multa > 0) {
                         System.out.println("Veiculo devolvido com sucesso!");
+                        if (multa > 0) {
+                            System.out.println("Multa por atraso: R$" + multa);
+                        } else {
+                            System.out.println("Sem multa por atraso.");
+                        }
                         System.out.println("Veiculo disponivel para aluguel!");
                     } else {
                         System.out.println("Nenhuma locacao ativa encontrada para essa placa!");
