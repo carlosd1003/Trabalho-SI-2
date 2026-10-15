@@ -39,7 +39,7 @@ public class App {
                 case 1: {
                     
                     System.out.print("Nome do Cliente: ");
-                    String nome = scan.next();
+                    String nome = scan.nextLine();
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
@@ -54,6 +54,7 @@ public class App {
                     
                     if(locadora.verificarCnh(cnh)){
                         System.out.println("Esta CNH já está criada!");
+                        break;
                     }
 
                     System.out.print("Idade do Cliente: ");
@@ -73,11 +74,11 @@ public class App {
                 case 2: {
                     // Pede para o usuário digitar o modelo do veículo
                     System.out.print("Nome do modelo: ");
-                    String modelo = scan.next();
+                    String modelo = scan.nextLine();
 
                     // Pede a marca do veículo
                     System.out.print("Nome da marca: ");
-                    String marca = scan.next();
+                    String marca = scan.nextLine();
                     
 
 
@@ -116,7 +117,7 @@ public class App {
                     System.out.println("Marca: " + carro.getmarca());
                     System.out.println("Placa: " + carro.getplaca());
                     System.out.println("Ano: " + carro.getano());
-                    System.out.println("Valor da diaria: R$ " + carro.getvalorDiaria());
+                    System.out.println("Valor da diaria: R$" + carro.getvalorDiaria());
                     System.out.println("Disponível: " + carro.getdisponivel());
 
                     // Encerra o case 2 e volta para o menu
