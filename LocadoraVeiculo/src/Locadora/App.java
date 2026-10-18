@@ -26,6 +26,9 @@ public class App {
                 System.out.println("5 - Listar Veículo");
                 System.out.println("6 - Listar Locação");
                 System.out.println("7 - Devolver Veículo");
+                System.out.println("8 - Remover um Cliente do Sistema");
+                System.out.println("9 - Remover um Carro do Sistema");
+                System.out.println("10 - Remover uma Locação");
                 System.out.println("0 - Para Sair");
 
                 // Pede para o usuário digitar a opção desejada
@@ -33,12 +36,7 @@ public class App {
                 escolha = scan.nextInt();
                 
                 // Verifica se a opção digitada é válida
-                if(escolha < 0 || escolha > 7){
-                    System.out.println("Opção inválida!");
-                    continue;
-                }else{
-                    System.out.println("Opção válida!");
-                }
+               
                 
            
             switch (escolha) {
@@ -46,7 +44,7 @@ public class App {
                 case 1: {
                     // Pede para o usuário digitar o nome do cliente                 
                     System.out.print("Nome do Cliente: ");
-                    String nome = scan.nextLine();
+                    String nome = scan.next();
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
@@ -289,6 +287,28 @@ public class App {
                     }
 
                     // Encerra o case 7 e volta para o menu
+                    break;
+                }
+                case 8: {
+                    System.out.println("Digite o CPF do Cliente que deseja remover do Sistema: ");
+                    String cpf = scan.next();
+                    
+                    boolean remover = locadora.removerCliente(cpf);
+                    
+                    if(remover){
+                        System.out.println("Cliente removido com sucesso!");
+                    }else{
+                        System.out.println("Cliente nao encontrado");
+                    }
+                    break;
+                }
+                    
+                case 0:{
+                    System.out.println("Saindo do Menu!");
+                    break;
+                }
+                default:{
+                    System.out.println("Número Inválido! Tente Novamente.");
                     break;
                 }
 

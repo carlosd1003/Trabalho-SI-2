@@ -166,4 +166,19 @@ public class Locadora {
         }
         return 0;
     }
+    
+    public boolean removerCliente(String cpf) {
+
+        for (int i = 0; i < this.clientes.size(); i++) {
+
+            Cliente cliente = this.clientes.get(i);
+
+            if (cliente.getCpf().equals(cpf)) { //compara o cpf digitado com o da lista
+                this.clientes.remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
