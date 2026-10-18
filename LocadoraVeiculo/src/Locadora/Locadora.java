@@ -181,4 +181,19 @@ public class Locadora {
 
         return false;
     }
+    public boolean removerCarro(String placa) {
+
+        for (int i = 0; i < this.veiculos.size(); i++) {
+
+            Veiculo veiculo = this.veiculos.get(i);
+
+            if (veiculo.getplaca().equals(placa)) { //compara o placa digitado com o da lista
+                this.veiculos.remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
 }

@@ -88,11 +88,11 @@ public class App {
                 case 2: {
                     // Pede para o usuário digitar o modelo do veículo
                     System.out.print("Nome do modelo: ");
-                    String modelo = scan.nextLine();
+                    String modelo = scan.next();
 
                     // Pede a marca do veículo
                     System.out.print("Nome da marca: ");
-                    String marca = scan.nextLine();
+                    String marca = scan.next();
                     
 
 
@@ -299,6 +299,19 @@ public class App {
                         System.out.println("Cliente removido com sucesso!");
                     }else{
                         System.out.println("Cliente nao encontrado");
+                    }
+                    break;
+                }
+                case 9: {
+                    System.out.println("Digite a Placa do veiculo que deseja remover do Sistema: ");
+                    String placa = scan.next();
+                    
+                    boolean remover = locadora.removerCarro(placa);
+                    
+                    if(remover){
+                        System.out.println("Veiculo removido com sucesso!");
+                    }else{
+                        System.out.println("Veiculo nao encontrado");
                     }
                     break;
                 }
