@@ -12,10 +12,11 @@ public class Locadora {
     private ArrayList<Cliente> clientes;
     private ArrayList<Veiculo> veiculos;
     private ArrayList<Locacao> locacoes;
+    private double ultimaMulta;
 
     // construtor
     public Locadora(String nome, String cnpj, String endereco, String telefone) {
-        
+
         // construtor
         this.nome = nome;
         this.cnpj = cnpj;
@@ -47,21 +48,21 @@ public class Locadora {
     public void cadastrarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
-    
+
     // verifica se o cpf do cliente ja está cadastrado
-    public boolean verificarCpf(String cpf){
-        for (Cliente cliente : clientes){
-            if(cliente.getCpf().equals(cpf)){
+    public boolean verificarCpf(String cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
                 return true;
             }
         }
         return false;
     }
-    
+
     // verifica se a cnh do cliente ja está cadastrada
-    public boolean verificarCnh(String cnh){
-        for (Cliente cliente : clientes){
-            if(cliente.getCnh().equals(cnh)){
+    public boolean verificarCnh(String cnh) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCnh().equals(cnh)) {
                 return true;
             }
         }
@@ -123,34 +124,37 @@ public class Locadora {
         }
         return null;
     }
-    
+
     // permite devolver o veiculo para ficar disponivel novamente
-    public double devolverVeiculo(String placa, int diasReais) {
+    public boolean devolverVeiculo(String placa, int diasReais) {
 
         for (int i = 0; i < this.locacoes.size(); i++) {
 
             Locacao locacao = this.locacoes.get(i);
 
             if (locacao.getVeiculo().getplaca().equalsIgnoreCase(placa)
-                    && locacao.isAtiva()) {
+                    && locacao.seAtiva()) {
 
-            double multa = calcularMulta(locacao, diasReais);
+                ultimaMulta = calcularMulta(locacao, diasReais);
 
                 locacao.finalizarLocacao();
-
                 locacao.getVeiculo().setDisponivel(true);
 
-                return multa;
+                return true;
             }
         }
 
-        return 0;
+        return false;
     }
-    
+
+    public double getUltimaMulta() {
+        return ultimaMulta;
+    }
+
     // verifica se a placa do veiculo ja está cadastrada
-    public boolean verificarPlaca(String placa){
-        for (Veiculo veiculo : veiculos){
-            if(veiculo.getplaca().equals(placa)){
+    public boolean verificarPlaca(String placa) {
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getplaca().equals(placa)) {
                 return true;
             }
         }
@@ -158,7 +162,7 @@ public class Locadora {
     }
 
     // calcula uma multa de 20% caso o cliente devolva o veiculo atrasado
-    public double calcularMulta (Locacao locacao, int diasReais){
+    public double calcularMulta(Locacao locacao, int diasReais) {
         int diasAtraso = diasReais - locacao.getQuantidadeDias();
         if (diasAtraso > 0) {
             //cobra os dias de atraso multiplicados por 20%
@@ -166,7 +170,7 @@ public class Locadora {
         }
         return 0;
     }
-    
+
     public boolean removerCliente(String cpf) {
 
         for (int i = 0; i < this.clientes.size(); i++) {
@@ -181,13 +185,20 @@ public class Locadora {
 
         return false;
     }
+
     public boolean removerCarro(String placa) {
 
         for (int i = 0; i < this.veiculos.size(); i++) {
 
             Veiculo veiculo = this.veiculos.get(i);
 
-            if (veiculo.getplaca().equals(placa)) { //compara o placa digitado com o da lista
+            if (veiculo.getplaca().equalsIgnoreCase(placa)) {
+
+                // Verifica se o veículo está disponível
+                if (!veiculo.getdisponivel()) {
+                    return false;
+                }
+
                 this.veiculos.remove(i);
                 return true;
             }
@@ -195,5 +206,29 @@ public class Locadora {
 
         return false;
     }
-    
+
+    public boolean removerLocacao(String placa) {
+
+        for (int i = 0; i < this.locacoes.size(); i++) {
+
+            Locacao locacao = this.locacoes.get(i);
+
+            if (locacao.getVeiculo().getplaca().equalsIgnoreCase(placa)) {
+
+                // Verifica se a locação está ativa
+                if (locacao.seAtiva()) {
+                    
+                    return false;
+                }
+
+                // Remove somente se a locação estiver finalizada
+                this.locacoes.remove(i);
+                return true;
+            }
+        }
+
+        System.out.println("Locação não encontrada!");
+        return false;
+    }
+
 }

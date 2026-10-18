@@ -49,12 +49,10 @@ public class Veiculo {
         return this.disponivel;
 
     }
-    
+
     // permite alterar a disponibilidade do veiculo
     public void setDisponivel(boolean disponivel) {
-    this.disponivel = disponivel;
+        this.disponivel = disponivel;
     }
-    
-    
 
 }

@@ -1,4 +1,3 @@
-
 package Locadora;
 
 public class Locacao {
@@ -9,7 +8,7 @@ public class Locacao {
     private boolean ativa;
     private int quantidadeDias;
     private double valorTotal;
-    
+
     // construtor
     public Locacao(Cliente cliente, Veiculo veiculo, int quantidadeDias) {
         this.cliente = cliente;
@@ -18,6 +17,7 @@ public class Locacao {
         this.valorTotal = calcularTotal();
         this.ativa = true;
     }
+
     // getters
     public Cliente getCliente() {
         return this.cliente;
@@ -36,7 +36,7 @@ public class Locacao {
     }
 
     // verifica se a locacao esta ativa
-    public boolean isAtiva() {
+    public boolean seAtiva() {
         return this.ativa;
     }
 
@@ -44,7 +44,7 @@ public class Locacao {
     public double calcularTotal() {
         return this.veiculo.getvalorDiaria() * this.quantidadeDias;
     }
-    
+
     // finaliza a locacao
     public void finalizarLocacao() {
         this.ativa = false;
