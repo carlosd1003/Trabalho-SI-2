@@ -48,7 +48,12 @@ public class Locadora {
     public void cadastrarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
-
+    
+    // Verifica se o CPF tem exatamente 11 números
+    public boolean verificarTamanhoCpf(String cpf) {
+        return cpf.matches("[0-9]{11}");
+    }
+    
     // verifica se o cpf do cliente ja está cadastrado
     public boolean verificarCpf(String cpf) {
         for (Cliente cliente : clientes) {

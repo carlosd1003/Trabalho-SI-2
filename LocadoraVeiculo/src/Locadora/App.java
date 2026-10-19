@@ -48,11 +48,20 @@ public class App {
 
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
+                    
 
+                    // Verifica se o CPF tem 11 números
+                    if (!locadora.verificarTamanhoCpf(cpf)) {
+                        System.out.println("CPF inválido! Digite exatamente 11 números.");
+                        break;
+                    }
+                    
+                    
                     // Verifica se o cpf do cliente ja está cadastrado
                     if (locadora.verificarCpf(cpf)) {
                         System.out.println("Este CPF já está criado!");
                         break;
+                    
                     }
 
                     // Pede para o usuário digitar a CNH do cliente
