@@ -46,22 +46,22 @@ public class App {
                     System.out.print("Nome do Cliente: ");
                     String nome = scan.next();
 
+                    // Solicita ao usuário o CPF do cliente.
                     System.out.print("Cpf do Cliente: ");
                     String cpf = scan.next();
-                    
 
-                    // Verifica se o CPF tem 11 números
+                    // Verifica se o CPF contém somente números e possui 11 dígitos.
+                    // Caso seja inválido, informa o erro e interrompe o cadastro.
                     if (!locadora.verificarTamanhoCpf(cpf)) {
-                        System.out.println("CPF inválido! Digite exatamente 11 números.");
+                        System.out.println("CPF inválido! Digite somente 11 números.");
                         break;
                     }
-                    
-                    
-                    // Verifica se o cpf do cliente ja está cadastrado
+
+                    // Verifica se o CPF informado já está cadastrado na locadora.
+                    // Caso exista, impede o cadastro de um cliente com CPF repetido.
                     if (locadora.verificarCpf(cpf)) {
-                        System.out.println("Este CPF já está criado!");
+                        System.out.println("Este CPF já está cadastrado!");
                         break;
-                    
                     }
 
                     // Pede para o usuário digitar a CNH do cliente
