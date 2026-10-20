@@ -50,10 +50,20 @@ public class Locadora {
     }
     
     // Verifica se o CPF tem exatamente 11 números
-    public boolean verificarTamanhoCpf(String cpf) {
-        return cpf.matches("[0-9]{11}");
-    }
+    // public boolean verificarTamanhoCpf(String cpf) {
+    //    return cpf.matches("[0-9]{11}");
+    // }
     
+    // Verifica se o CPF possui exatamente 11 dígitos numéricos,
+    // impedindo a utilização de letras, símbolos ou quantidades incorretas.
+    public boolean verificarTamanhoCpf(String cpf) {
+        if (cpf.matches("[0-9]{11}")) {
+            return true;
+        } else {
+            return false;
+    }
+    }
+
     // verifica se o cpf do cliente ja está cadastrado
     public boolean verificarCpf(String cpf) {
         for (Cliente cliente : clientes) {
