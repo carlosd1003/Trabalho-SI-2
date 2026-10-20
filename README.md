@@ -109,14 +109,14 @@ Ao final, o sistema exibirá as informações da locação realizada.
 
 ## 7. Divisão das responsabilidades da equipe
 
-A divisão das responsabilidades deve ser preenchida conforme as atividades realmente realizadas por cada integrante.
 
-- **[Integrante 1]:** desenvolvimento da classe `Cliente` e implementação do cadastro e das consultas de clientes.
-- **[Integrante 2]:** desenvolvimento da classe `Veiculo` e implementação do cadastro, da listagem e do controle de disponibilidade dos veículos.
-- **[Integrante 3]:** desenvolvimento da classe `Locacao` e implementação das operações de aluguel, devolução e cálculo do valor total.
-- **[Integrante responsável pela integração]:** desenvolvimento da classe `Locadora`, integração das funcionalidades e organização do menu principal na classe `App`.
+**Carlos Daniel**: desenvolvimento da classe Cliente, implementação do cadastro e das consultas de clientes, desenvolvimento da classe Locacao e implementação das operações de aluguel e devolução. Também contribuiu com sugestões e ajustes para melhorar a integração entre as classes e garantir a compatibilidade das funcionalidades com o restante do sistema.
 
-Caso a equipe tenha menos integrantes, as responsabilidades podem ser distribuídas entre os membros, de acordo com as tarefas executadas por cada um.
+**Roger Augusto**: desenvolvimento da classe Veiculo, incluindo os atributos e métodos relacionados ao cadastro, à listagem e ao controle de disponibilidade dos veículos. Também foi responsável pela implementação dos métodos de verificação, utilizados para evitar o cadastro de informações duplicadas, como CPF, CNH e placa de veículos.
+
+**Weber Júnior**: desenvolvimento da classe Locadora, responsável pelo gerenciamento das listas de clientes, veículos e locações, além da implementação dos métodos de gerenciamento e da organização do menu principal na classe App.
+
+
 
 ## 8. Considerações finais
 
